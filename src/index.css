@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'ITC Garamond Std Light Condensed';
+  src: local('ITC Garamond Std Light Condensed'),
+    url('../public/fonts/ITC\ Garamond\ Std\ Light\ Condensed.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'ITC Garamond Std Light Condensed', serif;
+}
