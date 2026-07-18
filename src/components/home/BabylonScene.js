@@ -15,6 +15,7 @@ const BabylonScene = ({ onLoadingStateChange }) => {
     const cameraRef = useRef(null);
     const engineRef = useRef(null);
     const hasStartedLoading = useRef(false);
+    const cleanupRef = useRef(null);
 
     const [environmentIntensity] = useState(0.75);
 
@@ -23,34 +24,32 @@ const BabylonScene = ({ onLoadingStateChange }) => {
         onLoadingStateChange?.(isLoading);
     }, [isLoading, onLoadingStateChange]);
 
-    // Pre-load the model and set up scene
+    // Set up scene and let Babylon load the model once.
     useEffect(() => {
         if (!canvasRef.current || hasStartedLoading.current) return;
         hasStartedLoading.current = true;
+        let isDisposed = false;
 
         const setupScene = async () => {
             try {
-                // First, preload the model
-                const response = await fetch('/3d/champagne-9.glb');
-                if (!response.ok) {
-                    throw new Error(`Failed to preload model: ${response.statusText}`);
-                }
-
-                // Now set up the scene
                 const canvas = canvasRef.current;
                 if (!canvas) return;
 
-                const engine = new Engine(canvas, true, { antialias: true, preserveDrawingBuffer: true, stencil: true });
+                const isMobile = window.innerWidth <= 768;
+                const engine = new Engine(canvas, true, {
+                    antialias: true,
+                    preserveDrawingBuffer: false,
+                    stencil: false,
+                    powerPreference: 'high-performance'
+                });
                 engineRef.current = engine;
 
-                engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
+                engine.setHardwareScalingLevel(isMobile ? Math.min(window.devicePixelRatio, 1.5) : 1);
 
                 const scene = new Scene(engine);
                 sceneRef.current = scene;
 
                 scene.clearColor = Color3.FromHexString("#F7F6F3");
-
-                const isMobile = window.innerWidth <= 768; // Define isMobile
 
                 const camera = new ArcRotateCamera(
                     "camera",
@@ -78,51 +77,6 @@ const BabylonScene = ({ onLoadingStateChange }) => {
                 topLight.intensity = topLightIntensity;
                 frontLight.intensity = frontLightIntensity;
 
-                // Load environment texture
-                try {
-                    const envTexture = CubeTexture.CreateFromPrefilteredData("/3d/sanGiuseppeBridge.env", scene);
-                    scene.environmentTexture = envTexture;
-                    scene.environmentIntensity = environmentIntensity;
-                } catch (error) {
-                    console.warn("Continuing without environment texture:", error);
-                }
-
-                // Load the 3D model
-                SceneLoader.ImportMesh("", "/3d/", "champagne-9.glb", scene,
-                    function (meshes) {
-                        if (meshes.length > 0) {
-                            const iceBucket = meshes.find(mesh => mesh.name === "Ice_bucket01");
-                            if (iceBucket) {
-                                const rootMesh = meshes[0];
-                                rootMesh.scaling = new Vector3(40, 40, 40);
-
-                                iceBucket.computeWorldMatrix(true);
-                                const boundingBox = iceBucket.getBoundingInfo().boundingBox;
-                                const bottomCenter = new Vector3(
-                                    (boundingBox.minimumWorld.x + boundingBox.maximumWorld.x) / 2,
-                                    boundingBox.minimumWorld.y,
-                                    (boundingBox.minimumWorld.z + boundingBox.maximumWorld.z) / 2
-                                );
-
-                                camera.setTarget(bottomCenter);
-                                camera.target = bottomCenter;
-                                rootMesh.position.y -= isMobile ? 8 : 5;
-
-                                setIsLoading(false);
-                            } else {
-                                throw new Error("Model structure is invalid - Ice bucket not found");
-                            }
-                        } else {
-                            throw new Error("No meshes were loaded");
-                        }
-                    },
-                    null,
-                    function (scene, message, exception) {
-                        throw new Error(`Error loading model: ${message}`);
-                    }
-                );
-
-                // Set up render loop
                 const renderLoop = () => {
                     if (cameraRef.current) {
                         cameraRef.current.alpha += rotationSpeed;
@@ -137,15 +91,52 @@ const BabylonScene = ({ onLoadingStateChange }) => {
                 };
 
                 window.addEventListener('resize', handleResize);
-
-                return () => {
+                cleanupRef.current = () => {
                     window.removeEventListener('resize', handleResize);
                     engine.stopRenderLoop(renderLoop);
                     scene.dispose();
                     engine.dispose();
                 };
 
+                try {
+                    const envTexture = CubeTexture.CreateFromPrefilteredData("/3d/sanGiuseppeBridge.env", scene);
+                    scene.environmentTexture = envTexture;
+                    scene.environmentIntensity = environmentIntensity;
+                } catch (error) {
+                    console.warn("Continuing without environment texture:", error);
+                }
+
+                const { meshes } = await SceneLoader.ImportMeshAsync("", "/3d/", "champagne-9.glb", scene);
+                if (isDisposed) return;
+
+                if (meshes.length === 0) {
+                    throw new Error("No meshes were loaded");
+                }
+
+                const iceBucket = meshes.find(mesh => mesh.name === "Ice_bucket01");
+                if (!iceBucket) {
+                    throw new Error("Model structure is invalid - Ice bucket not found");
+                }
+
+                const rootMesh = meshes[0];
+                rootMesh.scaling = new Vector3(40, 40, 40);
+
+                iceBucket.computeWorldMatrix(true);
+                const boundingBox = iceBucket.getBoundingInfo().boundingBox;
+                const bottomCenter = new Vector3(
+                    (boundingBox.minimumWorld.x + boundingBox.maximumWorld.x) / 2,
+                    boundingBox.minimumWorld.y,
+                    (boundingBox.minimumWorld.z + boundingBox.maximumWorld.z) / 2
+                );
+
+                camera.setTarget(bottomCenter);
+                camera.target = bottomCenter;
+                rootMesh.position.y -= isMobile ? 8 : 5;
+
+                setIsLoading(false);
+
             } catch (error) {
+                if (isDisposed) return;
                 console.error('Setup failed:', error);
                 setLoadError(error.message);
                 setIsLoading(false);
@@ -153,6 +144,16 @@ const BabylonScene = ({ onLoadingStateChange }) => {
         };
 
         setupScene();
+
+        return () => {
+            isDisposed = true;
+            cleanupRef.current?.();
+            cleanupRef.current = null;
+            hasStartedLoading.current = false;
+            sceneRef.current = null;
+            cameraRef.current = null;
+            engineRef.current = null;
+        };
     }, [rotationSpeed, environmentIntensity, hemisphericLightIntensity, topLightIntensity, frontLightIntensity]);
 
     return (

@@ -283,7 +283,7 @@ const WorkContent = () => {
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                At ADWEEK, I'm the engineer people call when something needs to ship fast or get fixed the right way. I helped launch two of the site's most engaging live editorial experiences: the Super Bowl Insights Hub and a real-time live blog platform, both built under tight deadlines and viewed by millions.
+                                At ADWEEK, I work on the systems behind publishing, audience growth, newsletters, live events, and business-critical workflows. I have helped launch high-profile editorial products viewed by millions, including the Super Bowl Insights Hub and a real-time live blog platform that supported 10M+ requests in 24 hours.
                             </motion.p>
                             <motion.p
                                 className="text-[24px] md:text-[24px] font-light leading-[40px] md:leading-relaxed mt-6 md:mt-12 tracking-wide"
@@ -292,7 +292,7 @@ const WorkContent = () => {
                                 transition={{ duration: 0.8, delay: 0.4 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                I also rebuilt the ADWEEK.com homepage with React, modernizing the frontend and improving engagement across key sections. During a major production outage, I diagnosed the root cause and delivered the fix that brought the platform back online when it mattered most.
+                                I support backend newsletter infrastructure serving 500,000+ daily subscribers, helped migrate ADWEEK's newsletter ecosystem to Iterable, and modernized React architecture across key site experiences. The work connects engineering directly to audience operations, marketing technology, and revenue-critical publishing.
                             </motion.p>
                             <motion.p
                                 className="text-[24px] md:text-[24px] font-light leading-[40px] md:leading-relaxed mt-6 md:mt-12 tracking-wide"
@@ -301,7 +301,7 @@ const WorkContent = () => {
                                 transition={{ duration: 0.8, delay: 0.6 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                Whether optimizing performance, improving Core Web Vitals, or stabilizing infrastructure, my goal is simple: keep ADWEEK's digital presence fast, stable, and impossible to ignore.
+                                I also self-direct architecture and risk-reduction work: patching critical PII exposure issues, reducing legacy plugin sprawl, simplifying platform dependencies, and improving maintainability for the team. Whether optimizing performance, reducing production issues, or stabilizing infrastructure, my goal is to make the platform faster, safer, and easier to operate.
                             </motion.p>
                         </JobSection>
                     </div>
@@ -321,7 +321,7 @@ const WorkContent = () => {
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                At Planit, I turned creative vision into clean, interactive web experiences. From 4,500+ GSAP-powered ads for clients like DuPont, SourceAmerica, and the Government of Maryland, to building custom WordPress components styled with Tailwind CSS, I helped brands bring their stories to life on-screen.
+                                At Planit, I worked at the intersection of software engineering, creative production, and digital marketing. I developed 4,500+ GSAP-powered HTML5 ads for clients like DuPont, SourceAmerica, and the Government of Maryland, while building reusable WordPress components for campaign sites, landing pages, calls to action, search experiences, and pricing layouts.
                             </motion.p>
                             <motion.p
                                 className="text-[24px] md:text-[24px] font-light leading-[40px] md:leading-relaxed mt-6 md:mt-12 tracking-wide"
@@ -330,7 +330,7 @@ const WorkContent = () => {
                                 transition={{ duration: 0.8, delay: 0.4 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                I also produced 25+ email campaigns a month, each designed to drive traffic, boost engagement, and elevate brand identity. Planit taught me how to work across creative, technical, and marketing teams, and how to make every pixel count.
+                                I also produced 25+ marketing email campaigns a month designed to drive traffic, engagement, and conversions. Planit taught me how to translate business and campaign requirements into production-ready technical work across designers, account teams, clients, and fast-moving launch timelines.
                             </motion.p>
                         </JobSection>
                     </div>
