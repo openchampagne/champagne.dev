@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Engine, Scene, ArcRotateCamera, Vector3, DirectionalLight, HemisphericLight, SceneLoader, Color3, CubeTexture } from '@babylonjs/core';
-import '@babylonjs/loaders/glTF';
+import { ArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
+import { Engine } from '@babylonjs/core/Engines/engine';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
+import { Scene } from '@babylonjs/core/scene';
+import { CubeTexture } from '@babylonjs/core/Materials/Textures/cubeTexture';
+import { SceneLoader } from '@babylonjs/core/Loading/sceneLoader';
+import '@babylonjs/loaders/glTF/glTFFileLoader';
 
 const BabylonScene = ({ onLoadingStateChange }) => {
     const canvasRef = useRef(null);
@@ -44,7 +52,7 @@ const BabylonScene = ({ onLoadingStateChange }) => {
                 });
                 engineRef.current = engine;
 
-                engine.setHardwareScalingLevel(isMobile ? Math.min(window.devicePixelRatio, 1.5) : 1);
+                engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
 
                 const scene = new Scene(engine);
                 sceneRef.current = scene;
