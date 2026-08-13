@@ -9,6 +9,7 @@ import { Scene } from '@babylonjs/core/scene';
 import { CubeTexture } from '@babylonjs/core/Materials/Textures/cubeTexture';
 import { SceneLoader } from '@babylonjs/core/Loading/sceneLoader';
 import '@babylonjs/loaders/glTF/glTFFileLoader';
+import '@babylonjs/loaders/glTF/2.0/glTFLoader';
 
 const BabylonScene = ({ onLoadingStateChange }) => {
     const canvasRef = useRef(null);
