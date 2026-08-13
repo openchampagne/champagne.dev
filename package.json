@@ -3,6 +3,9 @@
   "version": "1.2.0",
   "homepage": "https://champagne.dev",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "dependencies": {
     "@babylonjs/core": "^7.20.1",
     "@babylonjs/loaders": "^7.20.1",
