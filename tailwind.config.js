@@ -1,6 +1,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
   ],
   theme: {
     extend: {
@@ -26,12 +27,4 @@ module.exports = {
     },
   },
   plugins: [],
-  variants: {
-    extend: {},
-  },
-  corePlugins: {
-    // ...
-  },
-  mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
 }

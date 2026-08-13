@@ -1,8 +1,11 @@
 {
   "name": "champagne.dev",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "homepage": "https://champagne.dev",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "dependencies": {
     "@babylonjs/core": "^7.20.1",
     "@babylonjs/loaders": "^7.20.1",
@@ -19,7 +22,6 @@
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "^5.0.1",
     "remark-gfm": "^4.0.0",
     "remark-images": "^4.0.0",
     "tailwindcss": "^3.4.7",
@@ -27,18 +29,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start && node scripts/generate-posts-index.js",
+    "start": "npm run dev",
+    "dev": "node scripts/generate-posts-index.js && vite --host 0.0.0.0",
     "prebuild": "node scripts/generate-posts-index.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "echo \"No test runner configured\"",
     "posts": "node scripts/generate-posts-index.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -53,6 +50,8 @@
     ]
   },
   "devDependencies": {
-    "typescript": "^4.9.5"
+    "@vitejs/plugin-react-swc": "^4.3.1",
+    "typescript": "^4.9.5",
+    "vite": "^8.1.5"
   }
 }

@@ -226,7 +226,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                                         visible: { opacity: 1, y: 0 }
                                     }}
                                 >
-                                    Hey there, I'm <span className="text-[#000000]">Felipe 🥀</span>. I build <span className="text-[#000000]">AI-powered growth systems</span>, <span className="text-[#000000]">marketing technology</span>, and <span className="text-[#000000]">revenue-critical software</span> that help teams move faster without making the platform harder to trust.
+                                    Hey there, I'm <span className="text-[#000000]">Felipe 🥀</span>. I believe in <span className="text-[#000000]">elegance, precision</span>, and designing <span className="text-[#000000]">digital experiences</span> that feel as <span className="text-[#000000]">refined</span> as they are <span className="text-[#000000]">functional</span>. My work blends <span className="text-[#000000]">clean engineering</span> with <span className="text-[#000000]">thoughtful design</span>, bringing <span className="text-[#000000]">bold ideas</span> to life with <span className="text-[#000000]">clarity and purpose</span>.
                                 </motion.p>
 
                                 <motion.p
@@ -236,7 +236,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                                         visible: { opacity: 1, y: 0 }
                                     }}
                                 >
-                                    By day, I'm a <span className="text-[#000000]">Senior Software Engineer</span> at <span className="text-[#000000]">ADWEEK</span>, where I work across <span className="text-[#000000]">publishing platforms</span>, <span className="text-[#000000]">newsletter infrastructure</span>, <span className="text-[#000000]">automation</span>, and <span className="text-[#000000]">security-sensitive architecture</span> serving millions of readers.
+                                    By day, I'm a <span className="text-[#000000]">Software Engineer</span> at <span className="text-[#000000]">ADWEEK</span>, where I build <span className="text-[#000000]">high-impact features</span> for <span className="text-[#000000]">millions of readers</span> and keep our <span className="text-[#000000]">platform performing at its best</span> during <span className="text-[#000000]">live events and breaking news</span>.
                                 </motion.p>
 
                                 <motion.div
@@ -280,7 +280,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                I am a Senior Software Engineer moving toward GTM Engineering: the place where software, automation, marketing systems, customer insight, and revenue infrastructure all meet.
+                                As a Full-Stack Software Engineer, I craft intuitive, high-performance interfaces with React, PHP, and Tailwind CSS. I'm drawn to work that pushes both the technical and creative sides of my brain, and I aim to build software that feels elegant, fast, and intentional.
                             </motion.p>
                             <motion.p
                                 className="font-light text-[24px] md:text-[30px] leading-[40px] md:leading-[35px] text-[#181818] my-8"
@@ -289,7 +289,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                                 transition={{ duration: 0.8, delay: 0.4 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                At ADWEEK, I have built live-event products handling 10M+ requests in 24 hours, supported newsletter infrastructure serving 500,000+ daily subscribers, improved page-load performance by roughly five seconds, and reduced production issues by approximately 30%.
+                                At ADWEEK, I build and optimize large-scale media experiences, from live-event platforms to React-based site architecture. In my own projects, I design Chrome extensions that make the web feel smarter, faster, and more human.
                             </motion.p>
                             <motion.p
                                 className="font-light text-[24px] md:text-[30px] leading-[40px] md:leading-[35px] text-[#181818] my-8"
@@ -298,7 +298,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                                 transition={{ duration: 0.8, delay: 0.6 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
-                                The work I am most drawn to is self-directed and high-leverage: patching PII risks before they become incidents, reducing plugin sprawl, simplifying architecture, connecting APIs, and building products that make business teams more effective.
+                                Outside of code, you'll find me cycling through New York City, hunting down good pasta, or drawing inspiration from the city's architecture and design culture.
                             </motion.p>
                         </motion.div>
                         <div className="md:w-1/2 flex justify-center mb-8 md:mb-0 overflow-hidden px-6">
@@ -361,7 +361,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                 >
                     <div className="space-y-8 md:w-1/2">
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-4 font-thin">Contact.</h2>
-                        <p className="text-xl md:text-2xl font-serif">Let's connect around GTM engineering, AI automation, and products that grow.</p>
+                        <p className="text-xl md:text-2xl font-serif">Let's connect and make ideas bloom</p>
 
                         <a
                             href="mailto:ch@mpagne.dev"
@@ -371,7 +371,7 @@ const Home = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkV
                         </a>
 
                         <div className="mt-12">
-                            <p className="text-xl font-serif mb-4">Where the work lives</p>
+                            <p className="text-xl font-serif mb-4">Where roots grow deep</p>
                             <div className="space-y-4">
                                 <a
                                     href="https://github.com/openthechampagne"

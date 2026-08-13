@@ -8,9 +8,7 @@ import BlogPost from './components/BlogPost';
 
 const MainContent = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, isWorkVisible }) => {
   const location = useLocation();
-  // Remove the basename from the pathname when checking
-  const path = location.pathname.replace(process.env.PUBLIC_URL, '') || '/';
-  const isHomePage = path === '/';
+  const isHomePage = location.pathname === '/';
 
   return (
     <>
@@ -36,8 +34,6 @@ const MainContent = ({ setIsContactVisible, setIsWorkVisible, isContactVisible, 
 function App() {
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isWorkVisible, setIsWorkVisible] = useState(false);
-  console.log('Public URL:', process.env.PUBLIC_URL);
-  console.log('Current pathname:', window.location.pathname);
 
   return (
     <Router>
